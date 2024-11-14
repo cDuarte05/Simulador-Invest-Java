@@ -6,7 +6,6 @@ class ResultadoSimulacao {
     public double investimentoFinal;
     public double variacao;
     public int months;
-    
 
     public ResultadoSimulacao(double investimentoFinal, double variacao, int months) {
         this.investimentoFinal = investimentoFinal;
