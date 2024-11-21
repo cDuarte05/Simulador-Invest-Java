@@ -1,8 +1,23 @@
 package sistemainvest;
+
+import javax.swing.*;
 public class InterfaceEscolhas extends javax.swing.JFrame {
+    ResultadoSimulacao resultado = new ResultadoSimulacao();
+    String nome = InterfaceIdent.nomeUsuario;
+    String codigo = InterfaceIdent.idUsuario;
+    SpinnerNumberModel modeloInicial = new SpinnerNumberModel(0d, 0d, 100000000d,0.01d);
+    SpinnerNumberModel modeloIncremento = new SpinnerNumberModel(0d, -100000000d, 100000000d,0.01d);
+    public static int meses;
+    public static double inicial;
+    public static double incremento;
+    
     public InterfaceEscolhas() {
         initComponents();
+        
+        nomeUsuario.setText("Ola! " + nome);
+        idUsuario.setText("Codigo: " + codigo);
     }
+            
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -10,20 +25,21 @@ public class InterfaceEscolhas extends javax.swing.JFrame {
         grupoRisco = new javax.swing.ButtonGroup();
         botaoContinuar = new javax.swing.JButton();
         botaoCancelar = new javax.swing.JButton();
-        campoNome = new javax.swing.JTextField();
-        labelNome = new javax.swing.JLabel();
         labelMeses = new javax.swing.JLabel();
         campoMeses = new javax.swing.JTextField();
-        campoValorInicial = new javax.swing.JTextField();
         labelValorInicial = new javax.swing.JLabel();
         labemIncremento = new javax.swing.JLabel();
-        campoMensal = new javax.swing.JTextField();
         labelFaixaRisco = new javax.swing.JLabel();
         opcaoSeguro = new javax.swing.JRadioButton();
         opcaoIntermediario = new javax.swing.JRadioButton();
         opcaoArriscado = new javax.swing.JRadioButton();
+        nomeUsuario = new javax.swing.JLabel();
+        idUsuario = new javax.swing.JLabel();
+        spinnerInicial = new javax.swing.JSpinner(modeloInicial);
+        spinnerIncremento = new javax.swing.JSpinner(modeloIncremento);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         botaoContinuar.setText("Continuar");
         botaoContinuar.addActionListener(new java.awt.event.ActionListener() {
@@ -39,21 +55,13 @@ public class InterfaceEscolhas extends javax.swing.JFrame {
             }
         });
 
-        campoNome.setText("Insíra seu nome");
-
-        labelNome.setText("Nome:");
-
         labelMeses.setText("Meses:");
 
         campoMeses.setText("Duração em meses da simulação");
 
-        campoValorInicial.setText("Valor inicial (R$)");
-
         labelValorInicial.setText("Valor Inicial:");
 
         labemIncremento.setText("Incrementos Mensais:");
-
-        campoMensal.setText("Valor mensal (R$)");
 
         labelFaixaRisco.setText("Faixas de Risco:");
 
@@ -66,75 +74,76 @@ public class InterfaceEscolhas extends javax.swing.JFrame {
         grupoRisco.add(opcaoArriscado);
         opcaoArriscado.setText("Arriscado");
 
+        nomeUsuario.setText("Olá!  [usuário]");
+
+        idUsuario.setText("Código: [código]");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(36, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(labelFaixaRisco, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                        .addComponent(opcaoSeguro)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(opcaoIntermediario)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(opcaoArriscado, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(labelNome, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(campoNome, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addGap(14, 14, 14))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(15, 15, 15)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(opcaoSeguro)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(opcaoIntermediario)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(opcaoArriscado))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(74, 74, 74)
+                                .addComponent(labelFaixaRisco, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(idUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(nomeUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(labelMeses, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(labemIncremento, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(labelValorInicial, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(campoValorInicial, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(campoMeses, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(campoMensal, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(labelMeses, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(labemIncremento, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(labelValorInicial, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGap(172, 172, 172)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(spinnerIncremento, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(spinnerInicial, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(campoMeses, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 239, Short.MAX_VALUE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(50, 50, 50)
                         .addComponent(botaoCancelar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(botaoContinuar)
-                        .addContainerGap())))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(botaoContinuar)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(17, 17, 17)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(campoNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelNome))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addComponent(nomeUsuario)
+                .addGap(2, 2, 2)
+                .addComponent(idUsuario)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(labelMeses)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(campoMeses, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(labelValorInicial)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(campoValorInicial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(spinnerInicial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(labemIncremento)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(campoMensal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(spinnerIncremento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12)
                 .addComponent(labelFaixaRisco)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(opcaoSeguro)
                     .addComponent(opcaoIntermediario)
                     .addComponent(opcaoArriscado))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(botaoContinuar)
-                    .addComponent(botaoCancelar))
-                .addGap(16, 16, 16))
+                    .addComponent(botaoCancelar)
+                    .addComponent(botaoContinuar))
+                .addContainerGap())
         );
 
         pack();
@@ -145,19 +154,41 @@ public class InterfaceEscolhas extends javax.swing.JFrame {
     }//GEN-LAST:event_botaoCancelarActionPerformed
 
     private void botaoContinuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoContinuarActionPerformed
-        System.out.println(campoNome.getText());
-        System.out.println(campoMeses.getText());
-        System.out.println(campoValorInicial.getText());
-        System.out.println(campoMensal.getText());
+        System.out.println("Nome - " + nome);
+        System.out.println("ID - " + codigo);
+        System.out.println("Meses: " + campoMeses.getText());
+        System.out.println("Valor Inicial: R$ " + spinnerInicial.getValue());
+        System.out.println("Valor de Incremento: R$ " + spinnerIncremento.getValue());
+        meses = Integer.parseInt(campoMeses.getText());
+        inicial = Double.parseDouble(spinnerInicial.getValue().toString());
+        incremento = Double.parseDouble(spinnerIncremento.getValue().toString());
         if (opcaoSeguro.isSelected()) {// variação 0.4% -> 1%
-            
+            System.out.println("Opcao segura");
+            resultado = Calcs.option1(meses,incremento,inicial);
+            System.out.println ("Valor Final: R$ " + resultado.investimentoFinal);
+            for (int i = 0; i < meses; i++) {
+                System.out.println ("Variacao Mes " + (i + 1) + " - " + resultado.porcentagens[i]);
+            }
         }
         if (opcaoIntermediario.isSelected()) {// variação 0% -> 2%
+            System.out.println("Opcao intermediaria");
+            resultado = Calcs.option2(meses,incremento,inicial);
+            System.out.println ("Valor Final: R$ " + resultado.investimentoFinal);
+            for (int i = 0; i < meses; i++) {
+                System.out.println ("Variacao Mes " + (i + 1) + " - " + resultado.porcentagens[i]);
+            }            
             
         }
         if (opcaoArriscado.isSelected()) {// variação -10% -> 15%
-            
+            System.out.println("Opcao arriscada");
+            resultado = Calcs.option3(meses,incremento,inicial);
+            System.out.println ("Valor Final: R$ " + resultado.investimentoFinal);
+            for (int i = 0; i < meses; i++) {
+                System.out.println ("Variacao Mes " + (i + 1) + " - " + resultado.porcentagens[i]);
+            }
         }
+       
+
     }//GEN-LAST:event_botaoContinuarActionPerformed
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -192,20 +223,20 @@ public class InterfaceEscolhas extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton botaoCancelar;
-    private javax.swing.JButton botaoContinuar;
-    private javax.swing.JTextField campoMensal;
-    private javax.swing.JTextField campoMeses;
-    private javax.swing.JTextField campoNome;
-    private javax.swing.JTextField campoValorInicial;
-    private javax.swing.ButtonGroup grupoRisco;
-    private javax.swing.JLabel labelFaixaRisco;
-    private javax.swing.JLabel labelMeses;
-    private javax.swing.JLabel labelNome;
-    private javax.swing.JLabel labelValorInicial;
-    private javax.swing.JLabel labemIncremento;
-    private javax.swing.JRadioButton opcaoArriscado;
-    private javax.swing.JRadioButton opcaoIntermediario;
-    private javax.swing.JRadioButton opcaoSeguro;
+    private static javax.swing.JButton botaoCancelar;
+    private static javax.swing.JButton botaoContinuar;
+    private static javax.swing.JTextField campoMeses;
+    private static javax.swing.ButtonGroup grupoRisco;
+    private static javax.swing.JLabel idUsuario;
+    private static javax.swing.JLabel labelFaixaRisco;
+    private static javax.swing.JLabel labelMeses;
+    private static javax.swing.JLabel labelValorInicial;
+    private static javax.swing.JLabel labemIncremento;
+    private static javax.swing.JLabel nomeUsuario;
+    private static javax.swing.JRadioButton opcaoArriscado;
+    private static javax.swing.JRadioButton opcaoIntermediario;
+    private static javax.swing.JRadioButton opcaoSeguro;
+    private static javax.swing.JSpinner spinnerIncremento;
+    private static javax.swing.JSpinner spinnerInicial;
     // End of variables declaration//GEN-END:variables
 }
