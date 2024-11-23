@@ -1,9 +1,13 @@
 
 package sistemainvest;
 
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 public class InterfaceIdent extends javax.swing.JFrame {
     public static String nomeUsuario;
-    public static String idUsuario;
+    public static int idUsuario;
     public InterfaceIdent() {
         initComponents();
     }
@@ -32,18 +36,8 @@ public class InterfaceIdent extends javax.swing.JFrame {
         labelID.setText("Identificação:");
 
         campoNome.setText("Escreva aqui seu nome...");
-        campoNome.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                campoNomeActionPerformed(evt);
-            }
-        });
 
         campoID.setText("Escreva aqui seu código de identificação...");
-        campoID.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                campoIDActionPerformed(evt);
-            }
-        });
 
         botaoContinuar.setText("Continuar");
         botaoContinuar.addActionListener(new java.awt.event.ActionListener() {
@@ -109,21 +103,20 @@ public class InterfaceIdent extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void campoNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoNomeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_campoNomeActionPerformed
-
-    private void campoIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoIDActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_campoIDActionPerformed
-
     private void botaoCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCancelarActionPerformed
         dispose();
     }//GEN-LAST:event_botaoCancelarActionPerformed
 
     private void botaoContinuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoContinuarActionPerformed
         nomeUsuario = campoNome.getText();
-        idUsuario = campoID.getText();
+        idUsuario = Integer.parseInt(campoID.getText());
+        
+        AdmDataBase admDataBase = new AdmDataBase();
+        try {
+            admDataBase.insertUser(nomeUsuario,idUsuario);
+        } catch (SQLException ex) {
+            System.out.println("ERRO AO INSERIR");
+        }
         new InterfaceEscolhas().setVisible(true);
         dispose();
     }//GEN-LAST:event_botaoContinuarActionPerformed

@@ -1,10 +1,12 @@
 package sistemainvest;
 
 import javax.swing.*;
+import java.sql.SQLException;
+
 public class InterfaceEscolhas extends javax.swing.JFrame {
     ResultadoSimulacao resultado = new ResultadoSimulacao();
     String nome = InterfaceIdent.nomeUsuario;
-    String codigo = InterfaceIdent.idUsuario;
+    int codigo = InterfaceIdent.idUsuario;
     SpinnerNumberModel modeloInicial = new SpinnerNumberModel(0d, 0d, 100000000d,0.01d);
     SpinnerNumberModel modeloIncremento = new SpinnerNumberModel(0d, -100000000d, 100000000d,0.01d);
     public static int meses;
@@ -162,6 +164,10 @@ public class InterfaceEscolhas extends javax.swing.JFrame {
         meses = Integer.parseInt(campoMeses.getText());
         inicial = Double.parseDouble(spinnerInicial.getValue().toString());
         incremento = Double.parseDouble(spinnerIncremento.getValue().toString());
+        
+        AdmDataBase admDataBase = new AdmDataBase();
+        admDataBase.insertInves(meses,inicial,incremento);  
+        
         if (opcaoSeguro.isSelected()) {// variação 0.4% -> 1%
             System.out.println("Opcao segura");
             resultado = Calcs.option1(meses,incremento,inicial);
