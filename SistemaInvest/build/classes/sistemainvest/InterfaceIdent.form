@@ -103,17 +103,11 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Escreva aqui seu nome..."/>
       </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="campoNomeActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="campoID">
       <Properties>
         <Property name="text" type="java.lang.String" value="Escreva aqui seu c&#xf3;digo de identifica&#xe7;&#xe3;o..."/>
       </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="campoIDActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="botaoContinuar">
       <Properties>

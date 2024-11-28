@@ -30,7 +30,7 @@ public class AdmDataBase {
     
     public void insertInves(int month, double valorIncial, double increment){
         try(Connection connection = DatabaseConnection.getConnection()){    
-            String SQL = "INSERT INTO cliente (meses, valorInicial, increment) VALUES (?, ?, ?)";
+            String SQL = "INSERT INTO investimentos (meses, valor_inicial, incremento) VALUES (?, ?, ?)";
             PreparedStatement statement = connection.prepareStatement(SQL);
             
             statement.setInt(1, month);
@@ -46,8 +46,22 @@ public class AdmDataBase {
           }
     }
 
-    void insertUser(int meses, double inicial, double incremento) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public void variacoes(double variacoes[]) throws SQLException {
+    	try (Connection connection = DatabaseConnection.getConnection()){
+    		String SQL = "INSERT INTO variacoes (mes, variacao) VALUES (?,?,?,?)";
+    		PreparedStatement statement = connection.prepareStatement(SQL);
+    		
+    		for (int i = 0; i < variacoes.length; i++) {
+    			statement.setInt(1, i + 1); //escrever os meses
+    			statement.setDouble(2, variacoes[i]);
+    			statement.addBatch(); //coloca todos os em um lote para enviar de uma vez depois
+    		}
+    		
+    		statement.executeBatch(); //envia o lote
+    		System.out.println("Variações salvas!");
+    	}catch(SQLException e) {
+    		System.out.println("ERRO AO SALVAR" + e.getMessage());
+    	}
     }
  }
 

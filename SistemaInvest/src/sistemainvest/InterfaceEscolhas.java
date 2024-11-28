@@ -6,7 +6,7 @@ import java.sql.SQLException;
 public class InterfaceEscolhas extends javax.swing.JFrame {
     ResultadoSimulacao resultado = new ResultadoSimulacao();
     String nome = InterfaceIdent.nomeUsuario;
-    int codigo = InterfaceIdent.idUsuario;
+    public int codigo = InterfaceIdent.idUsuario;
     SpinnerNumberModel modeloInicial = new SpinnerNumberModel(0d, 0d, 100000000d,0.01d);
     SpinnerNumberModel modeloIncremento = new SpinnerNumberModel(0d, -100000000d, 100000000d,0.01d);
     public static int meses;
@@ -46,7 +46,12 @@ public class InterfaceEscolhas extends javax.swing.JFrame {
         botaoContinuar.setText("Continuar");
         botaoContinuar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botaoContinuarActionPerformed(evt);
+                try {
+					botaoContinuarActionPerformed(evt);
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
             }
         });
 
@@ -155,7 +160,7 @@ public class InterfaceEscolhas extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_botaoCancelarActionPerformed
 
-    private void botaoContinuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoContinuarActionPerformed
+    private void botaoContinuarActionPerformed(java.awt.event.ActionEvent evt) throws SQLException {//GEN-FIRST:event_botaoContinuarActionPerformed
         System.out.println("Nome - " + nome);
         System.out.println("ID - " + codigo);
         System.out.println("Meses: " + campoMeses.getText());
@@ -165,8 +170,12 @@ public class InterfaceEscolhas extends javax.swing.JFrame {
         inicial = Double.parseDouble(spinnerInicial.getValue().toString());
         incremento = Double.parseDouble(spinnerIncremento.getValue().toString());
         
-        AdmDataBase admDataBase = new AdmDataBase();
-        admDataBase.insertInves(meses,inicial,incremento);  
+        double porcentagens[] = new double[meses];
+        
+        AdmDataBase variacao = new AdmDataBase();
+
+        AdmDataBase investimentos = new AdmDataBase();
+        investimentos.insertInves(meses,inicial,incremento); //o codigo vai ser auto increment
         
         if (opcaoSeguro.isSelected()) {// variação 0.4% -> 1%
             System.out.println("Opcao segura");
@@ -174,7 +183,9 @@ public class InterfaceEscolhas extends javax.swing.JFrame {
             System.out.println ("Valor Final: R$ " + resultado.investimentoFinal);
             for (int i = 0; i < meses; i++) {
                 System.out.println ("Variacao Mes " + (i + 1) + " - " + resultado.porcentagens[i]);
+                porcentagens[i] = resultado.porcentagens[i]; 
             }
+            variacao.variacoes(porcentagens);
         }
         if (opcaoIntermediario.isSelected()) {// variação 0% -> 2%
             System.out.println("Opcao intermediaria");
@@ -182,7 +193,10 @@ public class InterfaceEscolhas extends javax.swing.JFrame {
             System.out.println ("Valor Final: R$ " + resultado.investimentoFinal);
             for (int i = 0; i < meses; i++) {
                 System.out.println ("Variacao Mes " + (i + 1) + " - " + resultado.porcentagens[i]);
-            }            
+                porcentagens[i] = resultado.porcentagens[i]; 
+            }
+            variacao.variacoes(porcentagens);      
+            
             
         }
         if (opcaoArriscado.isSelected()) {// variação -10% -> 15%
@@ -191,7 +205,9 @@ public class InterfaceEscolhas extends javax.swing.JFrame {
             System.out.println ("Valor Final: R$ " + resultado.investimentoFinal);
             for (int i = 0; i < meses; i++) {
                 System.out.println ("Variacao Mes " + (i + 1) + " - " + resultado.porcentagens[i]);
+                porcentagens[i] = resultado.porcentagens[i]; 
             }
+            variacao.variacoes(porcentagens);
         }
        
 
