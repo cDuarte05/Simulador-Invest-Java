@@ -5,19 +5,17 @@ import java.util.Random;
 class ResultadoSimulacao {
     public double investimentoFinal;
     public double porcentagens[] = new double[InterfaceEscolhas.meses];
-
-// Acredito que esse trecho de código não seja necessário, talvez eu tenha entendido errado oq ele faz, mas parece não fazer nada
-//    public ResultadoSimulacao(double investimentoFinal, double variacao, int months) { 
-//        this.investimentoFinal = investimentoFinal;
-//        this.variacao = variacao;
-//        this.months = months;
-//    }
+    
+    public ResultadoSimulacao(double investimentoFinal, double variacao[]) { 
+        this.investimentoFinal = investimentoFinal;
+        this.porcentagens = variacao;
+    }
 }
 public class Calcs {
     public int months;
     public static double variation;
     static Random generator = new Random();
-    static double percentage[] = new double[InterfaceEscolhas.meses]; //ainda n tenho ideia em q classe esse atributo ficaria --> !! Aqui msm, é parte do cálculo !!
+    static double percentage[] = new double[InterfaceEscolhas.meses];
 
     public static ResultadoSimulacao option1(int months, double monthlyIncrease, double investment) {
         while (months > 0) {
@@ -28,10 +26,7 @@ public class Calcs {
             investment = investment * variation;
             months--;
         }
-        ResultadoSimulacao result = new ResultadoSimulacao();
-        result.investimentoFinal = investment;
-        result.porcentagens = percentage;
-        return result;
+        return new ResultadoSimulacao(investment, percentage);
     }
 
     public static ResultadoSimulacao option2(int months, double monthlyIncrease, double investment) {
@@ -43,10 +38,7 @@ public class Calcs {
             investment = investment * variation;
             months--;
         }
-        ResultadoSimulacao result = new ResultadoSimulacao();
-        result.investimentoFinal = investment;
-        result.porcentagens = percentage;
-        return result;
+        return new ResultadoSimulacao(investment, percentage);
     }
 
     public static ResultadoSimulacao option3(int months, double monthlyIncrease, double investment) {
@@ -58,9 +50,6 @@ public class Calcs {
             investment = investment * variation;
             months--;
         }
-        ResultadoSimulacao result = new ResultadoSimulacao();
-        result.investimentoFinal = investment;
-        result.porcentagens = percentage;
-        return result;
+        return new ResultadoSimulacao(investment, percentage);
     }
 }

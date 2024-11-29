@@ -1,10 +1,16 @@
-
+    
 package sistemainvest;
+import java.text.ParseException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.text.MaskFormatter;
 
 public class InterfaceIdent extends javax.swing.JFrame {
     public static String nomeUsuario;
     public static String idUsuario;
-    public InterfaceIdent() {
+    MaskFormatter formatter = new MaskFormatter("#######");
+     
+    public InterfaceIdent() throws ParseException {   
         initComponents();
     }
 
@@ -17,9 +23,9 @@ public class InterfaceIdent extends javax.swing.JFrame {
         labelDesc = new javax.swing.JLabel();
         labelID = new javax.swing.JLabel();
         campoNome = new javax.swing.JTextField();
-        campoID = new javax.swing.JTextField();
         botaoContinuar = new javax.swing.JButton();
         botaoCancelar = new javax.swing.JButton();
+        campoID = new javax.swing.JFormattedTextField(formatter);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -32,18 +38,7 @@ public class InterfaceIdent extends javax.swing.JFrame {
         labelID.setText("Identificação:");
 
         campoNome.setText("Escreva aqui seu nome...");
-        campoNome.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                campoNomeActionPerformed(evt);
-            }
-        });
-
-        campoID.setText("Escreva aqui seu código de identificação...");
-        campoID.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                campoIDActionPerformed(evt);
-            }
-        });
+        campoNome.setToolTipText("");
 
         botaoContinuar.setText("Continuar");
         botaoContinuar.addActionListener(new java.awt.event.ActionListener() {
@@ -59,6 +54,8 @@ public class InterfaceIdent extends javax.swing.JFrame {
             }
         });
 
+        campoID.setText("Escreva seu código aqui...");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -68,7 +65,7 @@ public class InterfaceIdent extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addComponent(labelID)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(campoID))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(labelNome, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -109,19 +106,28 @@ public class InterfaceIdent extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void campoNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoNomeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_campoNomeActionPerformed
-
-    private void campoIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoIDActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_campoIDActionPerformed
-
     private void botaoCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCancelarActionPerformed
         dispose();
     }//GEN-LAST:event_botaoCancelarActionPerformed
 
     private void botaoContinuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoContinuarActionPerformed
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("FlatLaf Light".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(InterfaceEscolhas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(InterfaceEscolhas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(InterfaceEscolhas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(InterfaceEscolhas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        
         nomeUsuario = campoNome.getText();
         idUsuario = campoID.getText();
         new InterfaceEscolhas().setVisible(true);
@@ -133,14 +139,18 @@ public class InterfaceIdent extends javax.swing.JFrame {
      */
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(() -> {
-            new InterfaceIdent().setVisible(true);
+            try {
+                new InterfaceIdent().setVisible(true);
+            } catch (ParseException ex) {
+                Logger.getLogger(InterfaceIdent.class.getName()).log(Level.SEVERE, null, ex);
+            }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private static javax.swing.JButton botaoCancelar;
     private static javax.swing.JButton botaoContinuar;
-    private static javax.swing.JTextField campoID;
+    private static javax.swing.JFormattedTextField campoID;
     private static javax.swing.JTextField campoNome;
     private static javax.swing.JLabel labelDesc;
     private static javax.swing.JLabel labelID;
