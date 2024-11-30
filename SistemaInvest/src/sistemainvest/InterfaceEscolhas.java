@@ -2,7 +2,6 @@ package sistemainvest;
 import java.text.ParseException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.text.MaskFormatter;
 import java.text.*;
 import javax.swing.*;
 public class InterfaceEscolhas extends javax.swing.JFrame {
@@ -10,14 +9,13 @@ public class InterfaceEscolhas extends javax.swing.JFrame {
     String codigo = InterfaceIdent.idUsuario;
     SpinnerNumberModel modeloInicial = new SpinnerNumberModel(0d, 0d, 100000000d,0.01d);
     SpinnerNumberModel modeloIncremento = new SpinnerNumberModel(0d, -100000000d, 100000000d,0.01d);
-    MaskFormatter formatter;
+    SpinnerNumberModel modeloMeses = new SpinnerNumberModel (0, 0, 100000,1);
     DecimalFormat formatoDecimal = new DecimalFormat("#.##"); 
     public static int meses;
     public static double inicial;
     public static double incremento;    
         
     public InterfaceEscolhas() throws ParseException {    
-        this.formatter = new MaskFormatter("#######");
         initComponents();
 
         nomeUsuario.setText("Ola! " + nome);
@@ -42,7 +40,7 @@ public class InterfaceEscolhas extends javax.swing.JFrame {
         idUsuario = new javax.swing.JLabel();
         spinnerInicial = new javax.swing.JSpinner(modeloInicial);
         spinnerIncremento = new javax.swing.JSpinner(modeloIncremento);
-        campoMeses = new javax.swing.JFormattedTextField(formatter);
+        campoMeses = new javax.swing.JSpinner(modeloMeses);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -82,8 +80,6 @@ public class InterfaceEscolhas extends javax.swing.JFrame {
 
         idUsuario.setText("Código: [código]");
 
-        campoMeses.setText("0");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -104,14 +100,14 @@ public class InterfaceEscolhas extends javax.swing.JFrame {
                                 .addComponent(nomeUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(labemIncremento, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(labelValorInicial, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(spinnerIncremento, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(spinnerInicial, javax.swing.GroupLayout.Alignment.LEADING))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(74, 74, 74)
                                 .addComponent(labelFaixaRisco, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(labelMeses, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(campoMeses, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(spinnerIncremento, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                                .addComponent(spinnerInicial, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(campoMeses, javax.swing.GroupLayout.Alignment.LEADING))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(50, 50, 50)
                         .addComponent(botaoCancelar)
@@ -162,10 +158,10 @@ public class InterfaceEscolhas extends javax.swing.JFrame {
     private void botaoContinuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoContinuarActionPerformed
         System.out.println("Nome - " + nome);
         System.out.println("ID - " + codigo);
-        System.out.println("Meses: " + campoMeses.getText());
+        System.out.println("Meses: " + campoMeses.getValue().toString());
         System.out.println("Valor Inicial: R$ " + spinnerInicial.getValue());
         System.out.println("Valor de Incremento: R$ " + spinnerIncremento.getValue());
-        meses = Integer.parseInt(campoMeses.getText());
+        meses = Integer.parseInt(campoMeses.getValue().toString());
         inicial = Double.parseDouble(spinnerInicial.getValue().toString());
         incremento = Double.parseDouble(spinnerIncremento.getValue().toString());
         if (opcaoSeguro.isSelected()) {// variação 0.4% -> 1%
@@ -189,12 +185,15 @@ public class InterfaceEscolhas extends javax.swing.JFrame {
             System.out.println("Opcao arriscada");
             ResultadoSimulacao resultado = Calcs.option3(meses,incremento,inicial);
             System.out.println ("Valor Final: R$ " + formatoDecimal.format(resultado.investimentoFinal));
+            
             for (int i = 0; i < meses; i++) {
                 System.out.println ("Variacao Mes " + (i + 1) + " - " + formatoDecimal.format(((resultado.porcentagens[i] - 1) * 100))+ "%");
             }
         }
-        dispose();
+        TestChartClass.newCandleChart();
+//        dispose();
     }//GEN-LAST:event_botaoContinuarActionPerformed
+    
     public static void main(String args[]) {
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -229,7 +228,7 @@ public class InterfaceEscolhas extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private static javax.swing.JButton botaoCancelar;
     private static javax.swing.JButton botaoContinuar;
-    private static javax.swing.JFormattedTextField campoMeses;
+    private static javax.swing.JSpinner campoMeses;
     private static javax.swing.ButtonGroup grupoRisco;
     private static javax.swing.JLabel idUsuario;
     private static javax.swing.JLabel labelFaixaRisco;
