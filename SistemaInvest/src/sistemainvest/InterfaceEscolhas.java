@@ -170,44 +170,56 @@ public class InterfaceEscolhas extends javax.swing.JFrame {
         inicial = Double.parseDouble(spinnerInicial.getValue().toString());
         incremento = Double.parseDouble(spinnerIncremento.getValue().toString());
         
+        AdmDataBase admDataBase = new AdmDataBase();
+        try {
+            admDataBase.insertUser(nome,codigo);
+        } catch (SQLException ex) {
+            System.out.println("ERRO AO INSERIR");
+        }
+        
         double porcentagens[] = new double[meses];
+        
+        AdmDataBase investimentos = new AdmDataBase();
+        int idInvestimento = investimentos.insertInves(codigo, meses, inicial, incremento); //o codigo vai ser auto increment
         
         AdmDataBase variacao = new AdmDataBase();
 
-        AdmDataBase investimentos = new AdmDataBase();
-        investimentos.insertInves(meses,inicial,incremento); //o codigo vai ser auto increment
         
-        if (opcaoSeguro.isSelected()) {// variação 0.4% -> 1%
-            System.out.println("Opcao segura");
-            resultado = Calcs.option1(meses,incremento,inicial);
-            System.out.println ("Valor Final: R$ " + resultado.investimentoFinal);
-            for (int i = 0; i < meses; i++) {
-                System.out.println ("Variacao Mes " + (i + 1) + " - " + resultado.porcentagens[i]);
-                porcentagens[i] = resultado.porcentagens[i]; 
-            }
-            variacao.variacoes(porcentagens);
-        }
-        if (opcaoIntermediario.isSelected()) {// variação 0% -> 2%
-            System.out.println("Opcao intermediaria");
-            resultado = Calcs.option2(meses,incremento,inicial);
-            System.out.println ("Valor Final: R$ " + resultado.investimentoFinal);
-            for (int i = 0; i < meses; i++) {
-                System.out.println ("Variacao Mes " + (i + 1) + " - " + resultado.porcentagens[i]);
-                porcentagens[i] = resultado.porcentagens[i]; 
-            }
-            variacao.variacoes(porcentagens);      
-            
-            
-        }
-        if (opcaoArriscado.isSelected()) {// variação -10% -> 15%
-            System.out.println("Opcao arriscada");
-            resultado = Calcs.option3(meses,incremento,inicial);
-            System.out.println ("Valor Final: R$ " + resultado.investimentoFinal);
-            for (int i = 0; i < meses; i++) {
-                System.out.println ("Variacao Mes " + (i + 1) + " - " + resultado.porcentagens[i]);
-                porcentagens[i] = resultado.porcentagens[i]; 
-            }
-            variacao.variacoes(porcentagens);
+        if(idInvestimento != -1) { //conferir se retornou o id coreto
+	        if (opcaoSeguro.isSelected()) {// variação 0.4% -> 1%
+	            System.out.println("Opcao segura");
+	            resultado = Calcs.option1(meses,incremento,inicial);
+	            System.out.println ("Valor Final: R$ " + resultado.investimentoFinal);
+	            for (int i = 0; i < meses; i++) {
+	                System.out.println ("Variacao Mes " + (i + 1) + " - " + resultado.porcentagens[i]);
+	                porcentagens[i] = resultado.porcentagens[i]; 
+	            }
+	            variacao.variacoes(codigo, idInvestimento, porcentagens);
+	        }
+	        if (opcaoIntermediario.isSelected()) {// variação 0% -> 2%
+	            System.out.println("Opcao intermediaria");
+	            resultado = Calcs.option2(meses,incremento,inicial);
+	            System.out.println ("Valor Final: R$ " + resultado.investimentoFinal);
+	            for (int i = 0; i < meses; i++) {
+	                System.out.println ("Variacao Mes " + (i + 1) + " - " + resultado.porcentagens[i]);
+	                porcentagens[i] = resultado.porcentagens[i]; 
+	            }
+	            variacao.variacoes(codigo, idInvestimento, porcentagens);
+	            
+	            
+	        }
+	        if (opcaoArriscado.isSelected()) {// variação -10% -> 15%
+	            System.out.println("Opcao arriscada");
+	            resultado = Calcs.option3(meses,incremento,inicial);
+	            System.out.println ("Valor Final: R$ " + resultado.investimentoFinal);
+	            for (int i = 0; i < meses; i++) {
+	                System.out.println ("Variacao Mes " + (i + 1) + " - " + resultado.porcentagens[i]);
+	                porcentagens[i] = resultado.porcentagens[i]; 
+	            }
+	            variacao.variacoes(codigo, idInvestimento, porcentagens);
+	        }
+        }else {
+        	System.out.println("ERRO AO RECUPERAR O ID DE INVESTIMENTO");
         }
        
 

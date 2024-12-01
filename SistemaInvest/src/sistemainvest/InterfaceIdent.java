@@ -110,13 +110,7 @@ public class InterfaceIdent extends javax.swing.JFrame {
     private void botaoContinuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoContinuarActionPerformed
         nomeUsuario = campoNome.getText();
         idUsuario = Integer.parseInt(campoID.getText());
-        
-        AdmDataBase admDataBase = new AdmDataBase();
-        try {
-            admDataBase.insertUser(nomeUsuario,idUsuario);
-        } catch (SQLException ex) {
-            System.out.println("ERRO AO INSERIR");
-        }
+     
         new InterfaceEscolhas().setVisible(true);
         dispose();
     }//GEN-LAST:event_botaoContinuarActionPerformed
