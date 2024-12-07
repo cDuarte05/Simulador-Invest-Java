@@ -1,4 +1,3 @@
-    
 package sistemainvest;
 import java.text.ParseException;
 import java.util.logging.Level;
@@ -10,9 +9,11 @@ public class InterfaceIdent extends javax.swing.JFrame {
     public static String idUsuario;
     MaskFormatter formatter = new MaskFormatter("#######");
      
-    public InterfaceIdent() throws ParseException {   
-        formatter.setPlaceholderCharacter('_');
+    public InterfaceIdent() throws ParseException {
+        formatter.setPlaceholderCharacter('-');
         initComponents();
+        pack();
+        setLocationRelativeTo(null);
     }
 
     @SuppressWarnings("unchecked")
@@ -118,7 +119,6 @@ public class InterfaceIdent extends javax.swing.JFrame {
     }//GEN-LAST:event_botaoCancelarActionPerformed
 
     private void botaoContinuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoContinuarActionPerformed
-        
         nomeUsuario = campoNome.getText();
         idUsuario = campoID.getText();
         try {
@@ -128,19 +128,6 @@ public class InterfaceIdent extends javax.swing.JFrame {
         }
         dispose();
     }//GEN-LAST:event_botaoContinuarActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        java.awt.EventQueue.invokeLater(() -> {
-            try {
-                new InterfaceIdent().setVisible(true);
-            } catch (ParseException ex) {
-                Logger.getLogger(InterfaceIdent.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private static javax.swing.JButton botaoCancelar;

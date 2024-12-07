@@ -11,10 +11,11 @@ import javax.swing.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class TestChartClass {
+public class TestChartClass extends javax.swing.JFrame {
+public static JFrame frame = new JFrame("Gráfico Candlestick");
+    
     public static void newCandleChart() {
         SwingUtilities.invokeLater(() -> {
-            JFrame frame = new JFrame("Gráfico Candlestick");
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             frame.add(createChartPanel());
             frame.pack();
@@ -32,14 +33,14 @@ public class TestChartClass {
         double close[] = new double[InterfaceEscolhas.meses];
         double volume[] = new double[InterfaceEscolhas.meses];
         // Dados fictícios
-        Date[] dates = new Date[InterfaceEscolhas.meses];
+        Date[] dates = new Date[InterfaceEscolhas.meses];   
         while (monthsCounter > 0) {
             dates[monthsCounter - 1] = new Date(year - 1900, month, 1);
             low[monthsCounter - 1] = Calcs.valorMesInicial[monthsCounter - 1] - 500;
             high[monthsCounter - 1] = Calcs.valorMesFinal[monthsCounter - 1] + 500;
             open[monthsCounter - 1] = Calcs.valorMesInicial[monthsCounter - 1];
             close[monthsCounter - 1] = Calcs.valorMesFinal[monthsCounter - 1];
-            volume[monthsCounter - 1] = Calcs.valorMesFinal[monthsCounter - 1] * 2;
+            volume[monthsCounter - 1] = (((Calcs.valorMesFinal[monthsCounter - 1] + Calcs.valorMesInicial[monthsCounter - 1]) / 2) * 2) + InterfaceEscolhas.incremento;
             if (month != 11) {
                 month++;
             } else {
@@ -65,7 +66,7 @@ public class TestChartClass {
         CandlestickRenderer renderer = new CandlestickRenderer();
         renderer.setCandleWidth(8);
         renderer.setAutoWidthMethod(CandlestickRenderer.WIDTHMETHOD_AVERAGE); // Largura média
-        renderer.setAutoWidthGap((double)(Calcs.months)); // Define o espaço entre as velas
+        renderer.setAutoWidthGap(50); // Define o espaço entre as velas
         XYPlot plot = new XYPlot(dataset, xAxis, yAxis, renderer);
 
         return new JFreeChart("Gráfico Candlestick - Ações XYZ", JFreeChart.DEFAULT_TITLE_FONT, plot, false);
