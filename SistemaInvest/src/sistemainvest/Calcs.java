@@ -33,9 +33,9 @@ public class Calcs {
         while (months > 0) {
             valorMesInicial[months-1] = investment;
             switch (opt) {
-                case 1: variation = -20 + generator.nextDouble() * 60; // min -2% max 4%
+                case 1: variation = -20 + generator.nextDouble() * 100; // min -2% max 8%
                     break;
-                case 2: variation = -60 + generator.nextDouble() * 140; //min -6% max 8%
+                case 2: variation = -60 + generator.nextDouble() * 180; //min -6% max 12%
                     break;
                 case 3: variation = -150 + generator.nextDouble() * 350; // min -15% max 25%
                     break;

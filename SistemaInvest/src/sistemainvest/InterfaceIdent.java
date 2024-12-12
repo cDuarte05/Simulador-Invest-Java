@@ -1,7 +1,6 @@
 package sistemainvest;
 import java.text.ParseException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.text.*;
 
 public class InterfaceIdent extends javax.swing.JFrame {
@@ -14,6 +13,7 @@ public class InterfaceIdent extends javax.swing.JFrame {
         initComponents();
         pack();
         setLocationRelativeTo(null);
+        getRootPane().requestFocus();
     }
 
     @SuppressWarnings("unchecked")
@@ -42,6 +42,14 @@ public class InterfaceIdent extends javax.swing.JFrame {
 
         campoNome.setText("Escreva aqui seu nome...");
         campoNome.setToolTipText("");
+        campoNome.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                campoNomeFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                campoNomeFocusLost(evt);
+            }
+        });
 
         botaoContinuar.setText("Continuar");
         botaoContinuar.addActionListener(new java.awt.event.ActionListener() {
@@ -121,13 +129,29 @@ public class InterfaceIdent extends javax.swing.JFrame {
     private void botaoContinuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoContinuarActionPerformed
         nomeUsuario = campoNome.getText();
         idUsuario = campoID.getText();
-        try {
-            new InterfaceEscolhas().setVisible(true);
-        } catch (ParseException ex) {
-            Logger.getLogger(InterfaceIdent.class.getName()).log(Level.SEVERE, null, ex);
+        if ("-------".equals(idUsuario)) {
+            JOptionPane.showMessageDialog(null,"Por favor, insira 7 digitos no código!");
+        } else {
+            try {
+                new InterfaceEscolhas().setVisible(true);
+            } catch (ParseException ex) {
+                System.out.println("Erro ao transicionar telas: " + ex.getMessage());
+            }
+        dispose();  
         }
-        dispose();
     }//GEN-LAST:event_botaoContinuarActionPerformed
+
+    private void campoNomeFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_campoNomeFocusGained
+        if (campoNome.getText().equals("Escreva aqui seu nome...")) {
+            campoNome.setText("");
+        }
+    }//GEN-LAST:event_campoNomeFocusGained
+
+    private void campoNomeFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_campoNomeFocusLost
+        if (campoNome.getText().isEmpty()) {
+            campoNome.setText("Escreva aqui seu nome...");
+        }
+    }//GEN-LAST:event_campoNomeFocusLost
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private static javax.swing.JButton botaoCancelar;

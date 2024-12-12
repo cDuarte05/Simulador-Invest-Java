@@ -7,22 +7,38 @@ import org.jfree.chart.plot.XYPlot;
 import org.jfree.chart.renderer.xy.CandlestickRenderer;
 import org.jfree.data.xy.DefaultHighLowDataset;
 
+
 import javax.swing.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.SQLException;
+import java.text.DecimalFormat;
 
 public class TestChartClass extends javax.swing.JFrame {
 public static JFrame frame = new JFrame("Gráfico Candlestick");
-    
+private static final DecimalFormat formatoDecimal = new DecimalFormat("##.00"); 
+public static int idInvest;
     public static void newCandleChart() {
         SwingUtilities.invokeLater(() -> {
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            frame.add(createChartPanel());
-            frame.pack();
+            frame.setLayout(new BorderLayout());
+            
+            JPanel buttonPanel = createButtonPanel();
+            JPanel chartPanel = createChartPanel();
+            
+            frame.add(chartPanel, BorderLayout.CENTER);
+            frame.add(buttonPanel, BorderLayout.SOUTH);
+            
+//            frame.pack();
+            frame.setSize(800, 600);
             frame.setLocationRelativeTo(null);
             frame.setVisible(true);
         });
     }
+    
      public static JPanel createChartPanel() {
         int monthsCounter = InterfaceEscolhas.meses;
         int year = 2024;
@@ -56,6 +72,36 @@ public static JFrame frame = new JFrame("Gráfico Candlestick");
         JFreeChart candlestickChart = createCandlestickChart(dataset);
         return new ChartPanel(candlestickChart);
     }
+     
+     public static JPanel createButtonPanel() {
+        JPanel buttonPanel = new JPanel();
+
+        JButton saveButton = new JButton("Guardar Simulação");
+        saveButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    AdmDataBase.insertUser(InterfaceEscolhas.nome, Integer.parseInt(InterfaceEscolhas.codigo));
+                } catch (SQLException ex) {
+                    System.out.println("Erro ao inserir usuário: " + ex.getMessage());
+                }
+                try {
+                    idInvest = AdmDataBase.insertInves(Integer.parseInt(InterfaceEscolhas.codigo),InterfaceEscolhas.meses, InterfaceEscolhas.inicial, InterfaceEscolhas.incremento, InterfaceEscolhas.resultado.investimentoFinal);
+                } catch (SQLException ex) {
+                    System.out.println("Erro ao inserir dados da simulação: " + ex.getMessage());
+                }
+                try {
+                    AdmDataBase.variacoes (Integer.parseInt(InterfaceEscolhas.codigo), idInvest, InterfaceEscolhas.resultado.porcentagens);
+                } catch (SQLException ex) {
+                    System.out.println("Erro ao inserir variações da simulação: " + ex.getMessage());
+                }
+            }
+        });
+
+        buttonPanel.add(saveButton);
+        return buttonPanel;
+    }
+     
      public static JFreeChart createCandlestickChart(DefaultHighLowDataset dataset) {
         NumberAxis yAxis = new NumberAxis("Preço");
         yAxis.setAutoRangeIncludesZero(false); // Evita incluir zero no gráfico

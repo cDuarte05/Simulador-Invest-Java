@@ -1,21 +1,24 @@
 package sistemainvest;
 import java.text.ParseException;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.text.*;
 import javax.swing.*;
 public class InterfaceEscolhas extends javax.swing.JFrame {
     private final SpinnerNumberModel modeloInicial = new SpinnerNumberModel(0d, 0d, 100000000d,0.01d);
     private final SpinnerNumberModel modeloIncremento = new SpinnerNumberModel(0d, -100000000d, 100000000d,0.01d);
     private final SpinnerNumberModel modeloMeses = new SpinnerNumberModel (0, 0, 2400,1);
-    private final DecimalFormat formatoDecimal = new DecimalFormat("#.##"); 
+    private final DecimalFormat formatoDecimal = new DecimalFormat("##.00"); 
     private final TestChartClass chart = new TestChartClass();
+    private final TelaResultados telaResultado = new TelaResultados();
     
     public static String nome = InterfaceIdent.nomeUsuario;
     public static String codigo = InterfaceIdent.idUsuario;
+    public static ResultadoSimulacao resultado = new ResultadoSimulacao();
     public static int meses;
     public static double inicial;
     public static double incremento;
     public static int opt;
-    public static boolean tracker = false;
         
     public InterfaceEscolhas() throws ParseException {
         initComponents();
@@ -175,8 +178,7 @@ public class InterfaceEscolhas extends javax.swing.JFrame {
         meses = Integer.parseInt(campoMeses.getValue().toString());
         inicial = Double.parseDouble(spinnerInicial.getValue().toString());
         incremento = Double.parseDouble(spinnerIncremento.getValue().toString());
-        
-        ResultadoSimulacao resultado = new ResultadoSimulacao();        
+                       
         if (opcaoSeguro.isSelected()) {opt = 1;}        
         if (opcaoIntermediario.isSelected()) {opt = 2;}     
         if (opcaoArriscado.isSelected()) {opt = 3;}
@@ -186,13 +188,14 @@ public class InterfaceEscolhas extends javax.swing.JFrame {
         for (int i = 0; i < meses; i++) {
             System.out.println ("Variacao Mes " + (i + 1) + " - " + formatoDecimal.format(((resultado.porcentagens[i] - 1) * 100))+ "%");
         }
-        if (tracker) {
-            chart.frame.dispose();
-            chart.newCandleChart();
-        } else {
-            chart.newCandleChart();
-            tracker = false;
-        }
+        chart.newCandleChart();
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        double width = screenSize.getWidth();
+        double height = screenSize.getHeight();
+        setLocation(30, (int)(height/2) - (getSize().height / 4));
+        telaResultado.setValues();
+        telaResultado.setLocation (30,((int)(height/2) - getSize().height) + 10);
+        telaResultado.setVisible(true);
     }//GEN-LAST:event_botaoContinuarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

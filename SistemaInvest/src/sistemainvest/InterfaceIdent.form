@@ -107,6 +107,10 @@
         <Property name="text" type="java.lang.String" value="Escreva aqui seu nome..."/>
         <Property name="toolTipText" type="java.lang.String" value=""/>
       </Properties>
+      <Events>
+        <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="campoNomeFocusGained"/>
+        <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="campoNomeFocusLost"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="botaoContinuar">
       <Properties>
