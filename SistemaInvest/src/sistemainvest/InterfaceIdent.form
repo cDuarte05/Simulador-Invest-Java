@@ -36,7 +36,7 @@
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="campoNome" max="32767" attributes="0"/>
                   </Group>
-                  <Component id="labelDesc" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="labelDesc" alignment="1" max="32767" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="88" max="-2" attributes="0"/>
                       <Component id="labelTitulo" min="-2" max="-2" attributes="0"/>
@@ -46,6 +46,7 @@
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="botaoContinuar" min="-2" max="-2" attributes="0"/>
                   </Group>
+                  <Component id="labelID1" max="32767" attributes="0"/>
               </Group>
               <EmptySpace pref="23" max="32767" attributes="0"/>
           </Group>
@@ -68,7 +69,9 @@
                   <Component id="labelID" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="campoID" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="unrelated" pref="24" max="32767" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="labelID1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="12" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="botaoContinuar" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="botaoCancelar" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -128,6 +131,11 @@
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JFormattedTextField(formatter)"/>
       </AuxValues>
+    </Component>
+    <Component class="javax.swing.JLabel" name="labelID1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="OBS: A identifica&#xe7;&#xe3;o deve conter 7 digitos."/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>
