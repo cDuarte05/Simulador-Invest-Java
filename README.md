@@ -10,7 +10,7 @@
    - É a classe que faz a ligação da nossa aplicação com o banco de dados
 
 3. **Classe AdmDataBase**
-   - Classe onde é gerenciado os INCERT e SELECT no banco
+   - Classe onde é gerenciado os INSERT e SELECT no banco
 
 4. **Classes InterfaceEscolha e Interfaceldent**
    - Classes para manusear as interfaces
@@ -20,18 +20,19 @@
 
 1. **Interface Inicial**
    - Pedimos um nome e id para o usuário.
+   - Há também o botão para ver todos os registros.
    - Essas informações são guardadas na tabela usuario do Banco de dados
-  IMAGEM INTERFACE 1
+   ![image](https://github.com/user-attachments/assets/ee754d34-0fc2-4b50-ac05-1ad414efecd2)
 
 2. **Registro de simulações**
    - Pedimos para o usuário registrar o valor inicial, meses e o incremento mensal.
-   - Há também o botão para ver todos os registros.
    - As informações das variações e dados digitados pelo usuario são guaradas no banco também
-  IMAGEM INTERFACE 2
+   ![image](https://github.com/user-attachments/assets/1e643285-ce4e-4470-ab73-c6f36d4d1b12)
 
 3. **Amostragem dos gráficos**
    - Utilizando todas as variações que o sistema registrou, é criado e mostrado gráficos.
-   - IMAGEM DOS GRAFICOS.
+   ![image](https://github.com/user-attachments/assets/970a518f-1029-4e71-adef-68449bc62055)
+
 
 # Tecnologias e Bibliotecas Utilizadas
 
