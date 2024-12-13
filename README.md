@@ -1,6 +1,6 @@
 # Simulador de Investimento
 
-<p>Bem-vindo ao repositório do sistema **Simulador de Investimento**. Este projeto tem como objetivo obter informações de investimento do cliente através de interfaces onde posteriormente será mostrado gráficos simulando o investimento do usuário.</p>
+<p>Bem-vindo ao repositório do sistema <b>Simulador de Investimento</b>. Este projeto tem como objetivo obter informações de investimento do cliente através de interfaces onde posteriormente será mostrado gráficos simulando o investimento do usuário.</p>
 
 # Classes principais
 1. **Classe Calcs**
@@ -50,7 +50,10 @@
    - [Download](https://dev.mysql.com/downloads/connector/j/).
   
 3. **Banco de Dados**
-   -Fique a vontade para usar o banco disponibilizado em nossa página git.
+   - Fique a vontade para usar o banco disponibilizado em nossa página git.
+   - Nosso Banco:
+   - ![image](https://github.com/user-attachments/assets/6ece6940-f1c5-4691-bb74-618694df1d9d)
+
 
 3. **XAMPP**:
    - Será preciso utilizar o XAMPP para utilizar nosso banco.
