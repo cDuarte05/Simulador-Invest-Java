@@ -168,7 +168,8 @@ public class InterfaceIdent extends javax.swing.JFrame {
 
     private void acessarRegistrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acessarRegistrosActionPerformed
         new RegistrosBanco().setVisible(true);
-        setVisible(false);
+        removeAll();
+        dispose();
     }//GEN-LAST:event_acessarRegistrosActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

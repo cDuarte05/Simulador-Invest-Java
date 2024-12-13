@@ -12,8 +12,8 @@ public class InterfaceEscolhas extends javax.swing.JFrame {
     private final TestChartClass chart = new TestChartClass();
     private final TelaResultados telaResultado = new TelaResultados();
     
-    public static String nome = InterfaceIdent.nomeUsuario;
-    public static String codigo = InterfaceIdent.idUsuario;
+    public static String nome;
+    public static String codigo;
     public static ResultadoSimulacao resultado = new ResultadoSimulacao();
     public static int meses;
     public static double inicial;
@@ -23,6 +23,8 @@ public class InterfaceEscolhas extends javax.swing.JFrame {
     public InterfaceEscolhas() throws ParseException {
         initComponents();
         setLocationRelativeTo(null);
+        nome = InterfaceIdent.nomeUsuario;
+        codigo = InterfaceIdent.idUsuario;
         nomeUsuario.setText("Título: " + nome);
         idUsuario.setText("Codigo: " + codigo);
     }
