@@ -24,12 +24,16 @@
    - Essas informações são guardadas na tabela usuario do Banco de dados
    ![image](https://github.com/user-attachments/assets/ee754d34-0fc2-4b50-ac05-1ad414efecd2)
 
-2. **Registro de simulações**
+2. **Tabela do banco**
+   - Caso o software tenha um banco disponível e estruturado corretamente para acesso, você pode ver os dados guardados.
+   ![image](https://github.com/user-attachments/assets/9a9d8bbe-66da-4be5-b53f-59a9aee1fe96)
+
+4. **Registro de simulações**
    - Pedimos para o usuário registrar o valor inicial, meses e o incremento mensal.
    - As informações das variações e dados digitados pelo usuario são guaradas no banco também
    ![image](https://github.com/user-attachments/assets/1e643285-ce4e-4470-ab73-c6f36d4d1b12)
 
-3. **Amostragem dos gráficos**
+5. **Amostragem dos gráficos**
    - Utilizando todas as variações que o sistema registrou, é criado e mostrado gráficos.
    ![image](https://github.com/user-attachments/assets/970a518f-1029-4e71-adef-68449bc62055)
 
