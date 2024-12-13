@@ -29,39 +29,35 @@
 
   <Layout>
     <DimensionLayout dim="0">
-      <Group type="103" groupAlignment="0" attributes="0">
+      <Group type="103" groupAlignment="1" attributes="0">
           <Group type="102" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
+                          <Group type="102" attributes="0">
                               <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="opcaoSeguro" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="opcaoIntermediario" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="opcaoArriscado" min="-2" max="-2" attributes="0"/>
-                                  </Group>
                                   <Group type="103" groupAlignment="1" attributes="0">
                                       <Component id="idUsuario" min="-2" pref="237" max="-2" attributes="0"/>
                                       <Component id="nomeUsuario" min="-2" pref="237" max="-2" attributes="0"/>
                                   </Group>
                                   <Component id="labemIncremento" alignment="0" min="-2" pref="127" max="-2" attributes="0"/>
                                   <Component id="labelValorInicial" alignment="0" min="-2" pref="73" max="-2" attributes="0"/>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace min="-2" pref="74" max="-2" attributes="0"/>
-                                      <Component id="labelFaixaRisco" min="-2" pref="100" max="-2" attributes="0"/>
-                                  </Group>
                                   <Component id="labelMeses" alignment="0" min="-2" pref="121" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="opcaoSeguro" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
+                                      <Component id="opcaoIntermediario" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="opcaoArriscado" min="-2" max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
-                              <Component id="botaoCancelar" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="74" max="-2" attributes="0"/>
+                              <Component id="botaoHelp" min="-2" pref="17" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="botaoContinuar" min="-2" max="-2" attributes="0"/>
+                              <Component id="labelFaixaRisco" min="-2" pref="94" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -72,6 +68,7 @@
                           <Component id="campoMeses" alignment="1" min="-2" pref="150" max="-2" attributes="0"/>
                           <Component id="spinnerInicial" alignment="1" min="-2" pref="150" max="-2" attributes="0"/>
                           <Component id="spinnerIncremento" alignment="1" min="-2" pref="150" max="-2" attributes="0"/>
+                          <Component id="botaoContinuar" alignment="1" min="-2" pref="141" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -98,20 +95,20 @@
               <Component id="labemIncremento" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="spinnerIncremento" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="labelFaixaRisco" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="labelFaixaRisco" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="botaoHelp" alignment="3" min="-2" pref="17" max="-2" attributes="0"/>
+              </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="opcaoSeguro" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="opcaoIntermediario" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="opcaoArriscado" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace pref="13" max="32767" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="botaoCancelar" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="botaoContinuar" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="opcaoSeguro" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
+              <Component id="botaoContinuar" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -119,18 +116,10 @@
   <SubComponents>
     <Component class="javax.swing.JButton" name="botaoContinuar">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Continuar"/>
+        <Property name="text" type="java.lang.String" value="Gerar Gr&#xe1;fico"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botaoContinuarActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JButton" name="botaoCancelar">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Cancelar"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botaoCancelarActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="labelMeses">
@@ -179,7 +168,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="nomeUsuario">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Ol&#xe1;!  [usu&#xe1;rio]"/>
+        <Property name="text" type="java.lang.String" value="T&#xed;tulo: [t&#xed;tulo]"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="idUsuario">
@@ -201,6 +190,14 @@
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JSpinner(modeloMeses)"/>
       </AuxValues>
+    </Component>
+    <Component class="javax.swing.JButton" name="botaoHelp">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="?"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botaoHelpActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

@@ -8,11 +8,16 @@ class ResultadoSimulacao {
     
     public ResultadoSimulacao() {}
     
+    public ResultadoSimulacao(double investimentoFinal) { 
+        this.investimentoFinal = investimentoFinal;
+    }
+    
     public ResultadoSimulacao(double investimentoFinal, double variacao[]) { 
         this.investimentoFinal = investimentoFinal;
         this.porcentagens = variacao;
     }
 }
+
 public class Calcs {
     public static int months;
     public static double variation;
@@ -22,9 +27,9 @@ public class Calcs {
     static double valorMesFinal[];
 
     public static ResultadoSimulacao runCalcs (int opt, int months, double monthlyIncrease, double investment) {
-        percentage = new double [InterfaceEscolhas.meses];
-        valorMesInicial = new double [InterfaceEscolhas.meses];
-        valorMesFinal = new double [InterfaceEscolhas.meses];
+        percentage = new double [months];
+        valorMesInicial = new double [months];
+        valorMesFinal = new double [months];
         switch (opt) {
             case 1: System.out.println("Opcao segura"); break;
             case 2: System.out.println("Opcao intermediária"); break;
@@ -48,5 +53,25 @@ public class Calcs {
             months--;
             }
             return new ResultadoSimulacao(investment, percentage);
+    }
+    
+    public static ResultadoSimulacao acessandoTabela (int months,double porcentagens[], double monthlyIncrease, double investment) {
+        InterfaceEscolhas.meses = months;
+        percentage = new double [months];
+        percentage = porcentagens;
+        valorMesInicial = new double [months];
+        valorMesFinal = new double [months];
+        int i = 0;
+        while (months > 0) {
+            variation = percentage[i];
+            valorMesInicial[months-1] = investment;
+            variation = 1 + (variation / 100);
+            investment = investment + monthlyIncrease;
+            investment = investment * variation;
+            valorMesFinal[months-1] = investment;
+            months--;
+            i++;
+            }
+        return new ResultadoSimulacao (investment);
     }
 }

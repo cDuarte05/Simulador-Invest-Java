@@ -6,12 +6,11 @@ import javax.swing.text.*;
 public class InterfaceIdent extends javax.swing.JFrame {
     public static String nomeUsuario;
     public static String idUsuario;
-    MaskFormatter formatter = new MaskFormatter("#######");
+    MaskFormatter formatter = new MaskFormatter("########");
      
     public InterfaceIdent() throws ParseException {
         formatter.setPlaceholderCharacter('-');
         initComponents();
-        pack();
         setLocationRelativeTo(null);
         getRootPane().requestFocus();
     }
@@ -29,18 +28,19 @@ public class InterfaceIdent extends javax.swing.JFrame {
         botaoCancelar = new javax.swing.JButton();
         campoID = new javax.swing.JFormattedTextField(formatter);
         labelID1 = new javax.swing.JLabel();
+        acessarRegistros = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        labelNome.setText("Nome:");
+        labelNome.setText("Título");
 
         labelTitulo.setText("Bem Vindo ao nosso programa!");
 
-        labelDesc.setText("Insira aqui seu nome e um chave de identificação, de sua escolha:");
+        labelDesc.setText("Insira aqui um título e uma chave de identificação, de sua escolha:");
 
         labelID.setText("Identificação:");
 
-        campoNome.setText("Escreva aqui seu nome...");
+        campoNome.setText("Escreva aqui um título...");
         campoNome.setToolTipText("");
         campoNome.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -65,9 +65,14 @@ public class InterfaceIdent extends javax.swing.JFrame {
             }
         });
 
-        campoID.setText("Escreva seu código aqui...");
+        labelID1.setText("OBS: A identificação deve conter 8 digitos.");
 
-        labelID1.setText("OBS: A identificação deve conter 7 digitos.");
+        acessarRegistros.setText("Ver Registros");
+        acessarRegistros.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                acessarRegistrosActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -89,11 +94,13 @@ public class InterfaceIdent extends javax.swing.JFrame {
                         .addGap(88, 88, 88)
                         .addComponent(labelTitulo))
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(acessarRegistros)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(botaoCancelar)
                         .addGap(18, 18, 18)
                         .addComponent(botaoContinuar))
                     .addComponent(labelID1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -115,7 +122,8 @@ public class InterfaceIdent extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(botaoContinuar)
-                    .addComponent(botaoCancelar))
+                    .addComponent(botaoCancelar)
+                    .addComponent(acessarRegistros))
                 .addGap(18, 18, 18))
         );
 
@@ -129,31 +137,42 @@ public class InterfaceIdent extends javax.swing.JFrame {
     private void botaoContinuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoContinuarActionPerformed
         nomeUsuario = campoNome.getText();
         idUsuario = campoID.getText();
-        if ("-------".equals(idUsuario)) {
-            JOptionPane.showMessageDialog(null,"Por favor, insira 7 digitos no código!");
+        
+        if ("Escreva aqui um título...".equals(nomeUsuario)) {
+            JOptionPane.showMessageDialog(null,"Por favor, insira um título!");
         } else {
             try {
-                new InterfaceEscolhas().setVisible(true);
+                if ("--------".equals(idUsuario)) {
+                    JOptionPane.showMessageDialog(null,"Por favor, insira 8 digitos no código!");
+                } else {
+                    new InterfaceEscolhas().setVisible(true);
+                    dispose();  
+                }
             } catch (ParseException ex) {
                 System.out.println("Erro ao transicionar telas: " + ex.getMessage());
             }
-        dispose();  
         }
     }//GEN-LAST:event_botaoContinuarActionPerformed
 
     private void campoNomeFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_campoNomeFocusGained
-        if (campoNome.getText().equals("Escreva aqui seu nome...")) {
+        if (campoNome.getText().equals("Escreva aqui um título...")) {
             campoNome.setText("");
         }
     }//GEN-LAST:event_campoNomeFocusGained
 
     private void campoNomeFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_campoNomeFocusLost
         if (campoNome.getText().isEmpty()) {
-            campoNome.setText("Escreva aqui seu nome...");
+            campoNome.setText("Escreva aqui um título...");
         }
     }//GEN-LAST:event_campoNomeFocusLost
 
+    private void acessarRegistrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acessarRegistrosActionPerformed
+        new RegistrosBanco().setVisible(true);
+        setVisible(false);
+    }//GEN-LAST:event_acessarRegistrosActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private static javax.swing.JButton acessarRegistros;
     private static javax.swing.JButton botaoCancelar;
     private static javax.swing.JButton botaoContinuar;
     private static javax.swing.JFormattedTextField campoID;

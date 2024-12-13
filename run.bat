@@ -1,0 +1,1 @@
+java -jar "SistemaInvest\dist\SistemaInvest.jar"

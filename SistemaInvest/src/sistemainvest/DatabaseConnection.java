@@ -15,11 +15,10 @@ public class DatabaseConnection {
         try {
             // Carregar o driver (apenas necessário para versões antigas do Java)
             Class.forName("com.mysql.cj.jdbc.Driver");
+            // Retornar a conexão
+            return DriverManager.getConnection(URL, USER, PASSWORD);
         } catch (ClassNotFoundException e) {
             throw new SQLException("Driver JDBC não encontrado: " + e.getMessage());
-        }
-
-        // Retornar a conexão
-        return DriverManager.getConnection(URL, USER, PASSWORD);
+        }  
     }
 }

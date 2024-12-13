@@ -6,6 +6,7 @@ import org.jfree.chart.axis.NumberAxis;
 import org.jfree.chart.plot.XYPlot;
 import org.jfree.chart.renderer.xy.CandlestickRenderer;
 import org.jfree.data.xy.DefaultHighLowDataset;
+import java.awt.event.WindowEvent;
 
 
 import javax.swing.*;
@@ -18,11 +19,12 @@ import java.sql.SQLException;
 import java.text.DecimalFormat;
 
 public class TestChartClass extends javax.swing.JFrame {
-public static JFrame frame = new JFrame("Gráfico Candlestick");
+public static JFrame frame;
 private static final DecimalFormat formatoDecimal = new DecimalFormat("##.00"); 
 public static int idInvest;
     public static void newCandleChart() {
         SwingUtilities.invokeLater(() -> {
+            frame = new JFrame("Simulação");
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             frame.setLayout(new BorderLayout());
             
@@ -33,6 +35,24 @@ public static int idInvest;
             frame.add(buttonPanel, BorderLayout.SOUTH);
             
 //            frame.pack();
+            frame.setSize(800, 600);
+            frame.setLocationRelativeTo(null);
+            frame.setVisible(true);
+        });
+    }
+    
+    public void newCandleChartNoButton() {
+        SwingUtilities.invokeLater(() -> {
+            frame = new JFrame("Simulação");
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.setLayout(new BorderLayout());
+          
+            JPanel chartPanel = createChartPanel();
+            JPanel buttonPanel = createButtonPanelVoltar();
+            
+            frame.add(chartPanel, BorderLayout.CENTER);
+            frame.add(buttonPanel, BorderLayout.SOUTH);
+            
             frame.setSize(800, 600);
             frame.setLocationRelativeTo(null);
             frame.setVisible(true);
@@ -66,7 +86,7 @@ public static int idInvest;
             monthsCounter--;
         }
 
-        DefaultHighLowDataset dataset = new DefaultHighLowDataset("Ações XYZ", dates, high, low, open, close, volume );
+        DefaultHighLowDataset dataset = new DefaultHighLowDataset("Variação por Mês", dates, high, low, open, close, volume );
 
         // Criando o gráfico
         JFreeChart candlestickChart = createCandlestickChart(dataset);
@@ -75,8 +95,8 @@ public static int idInvest;
      
      public static JPanel createButtonPanel() {
         JPanel buttonPanel = new JPanel();
-
         JButton saveButton = new JButton("Guardar Simulação");
+        
         saveButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -102,8 +122,22 @@ public static int idInvest;
         return buttonPanel;
     }
      
+     public JPanel createButtonPanelVoltar() {
+        JPanel buttonPanel = new JPanel();
+        JButton backButton = new JButton("Voltar");
+        backButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                frame.removeAll();
+                frame.dispose();
+                new RegistrosBanco().setVisible(true);
+            }
+        });
+        buttonPanel.add(backButton);
+        return buttonPanel;
+    }
+     
      public static JFreeChart createCandlestickChart(DefaultHighLowDataset dataset) {
-        NumberAxis yAxis = new NumberAxis("Preço");
+        NumberAxis yAxis = new NumberAxis("Valor");
         yAxis.setAutoRangeIncludesZero(false); // Evita incluir zero no gráfico
 
         DateAxis xAxis = new DateAxis("Data");
@@ -115,7 +149,7 @@ public static int idInvest;
         renderer.setAutoWidthGap(50); // Define o espaço entre as velas
         XYPlot plot = new XYPlot(dataset, xAxis, yAxis, renderer);
 
-        return new JFreeChart("Gráfico Candlestick - Ações XYZ", JFreeChart.DEFAULT_TITLE_FONT, plot, false);
+        return new JFreeChart("Simulação - Variações por Mês", JFreeChart.DEFAULT_TITLE_FONT, plot, false);
     }
 }
 

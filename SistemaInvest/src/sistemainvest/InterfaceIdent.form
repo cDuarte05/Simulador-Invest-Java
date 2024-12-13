@@ -42,13 +42,15 @@
                       <Component id="labelTitulo" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
+                      <Component id="acessarRegistros" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                       <Component id="botaoCancelar" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="botaoContinuar" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Component id="labelID1" max="32767" attributes="0"/>
               </Group>
-              <EmptySpace pref="23" max="32767" attributes="0"/>
+              <EmptySpace pref="19" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -75,6 +77,7 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="botaoContinuar" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="botaoCancelar" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="acessarRegistros" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
           </Group>
@@ -84,7 +87,7 @@
   <SubComponents>
     <Component class="javax.swing.JLabel" name="labelNome">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Nome:"/>
+        <Property name="text" type="java.lang.String" value="T&#xed;tulo"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="labelTitulo">
@@ -94,7 +97,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="labelDesc">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Insira aqui seu nome e um chave de identifica&#xe7;&#xe3;o, de sua escolha:"/>
+        <Property name="text" type="java.lang.String" value="Insira aqui um t&#xed;tulo e uma chave de identifica&#xe7;&#xe3;o, de sua escolha:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="labelID">
@@ -104,7 +107,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="campoNome">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Escreva aqui seu nome..."/>
+        <Property name="text" type="java.lang.String" value="Escreva aqui um t&#xed;tulo..."/>
         <Property name="toolTipText" type="java.lang.String" value=""/>
       </Properties>
       <Events>
@@ -129,17 +132,22 @@
       </Events>
     </Component>
     <Component class="javax.swing.JFormattedTextField" name="campoID">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Escreva seu c&#xf3;digo aqui..."/>
-      </Properties>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JFormattedTextField(formatter)"/>
       </AuxValues>
     </Component>
     <Component class="javax.swing.JLabel" name="labelID1">
       <Properties>
-        <Property name="text" type="java.lang.String" value="OBS: A identifica&#xe7;&#xe3;o deve conter 7 digitos."/>
+        <Property name="text" type="java.lang.String" value="OBS: A identifica&#xe7;&#xe3;o deve conter 8 digitos."/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="acessarRegistros">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Ver Registros"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="acessarRegistrosActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

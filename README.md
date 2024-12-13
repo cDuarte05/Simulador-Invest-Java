@@ -1,5 +1,7 @@
 # Sistema_LP2
 
-- TODO:
-  - Tela que faça select do branco para o usuário conseguir acessar simulações guardadas;
-  - Tela de info pra pessoa saber quais são as variações pra cada faixa de risco;
+- Início de uma interface Swing para receber os dados, ainda preciso terminar de arrumar a forma que os dados vão entrar e ser passados pro resto das coisas
+
+- TODO: Estou arrumando
+
+- OBS: Eu consegui fazer a pull do seu codigo 
