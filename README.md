@@ -4,10 +4,10 @@
 
 # Classes principais
 1. **Classe Calcs**
-  - É uma classe estática onde todos os calculos mátematicos serão feitos.
+   - É uma classe estática onde todos os calculos mátematicos serão feitos.
 
 2. **Classe DataBaseConnection**
-  - É a classe que faz a ligação da nossa aplicação com o banco de dados
+   - É a classe que faz a ligação da nossa aplicação com o banco de dados
 
 3. **Classe AdmDataBase**
    - Classe onde é gerenciado os INCERT e SELECT no banco
@@ -37,7 +37,7 @@
 
 - **Java**: Estruturação da aplicação.
 - **Jfreechart v.1.5.5**: Criação das interfaces gráficas.
-- **Banco de Dados**:Foi usado o JDBC para ligar com o PHPMyAdmin para o gerenciamento e armazenamento de informações.
+- **Banco de Dados**: Foi usado o JDBC para ligar com o PHPMyAdmin para o gerenciamento e armazenamento de informações.
 
 # Instalação e Configuração
 
