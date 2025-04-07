@@ -1,12 +1,12 @@
-# Sistema de Agendamento de Auditório
+# Sistema de simular investimento
 
-<p>Bem-vindo ao repositório do sistema <b>Sistema de Agendamento de Auditório</b>. Este projeto foi desenvolvido em PHP com MySQL e tem como objetivo facilitar o agendamento de espaços como auditórios, garantindo uma gestão eficiente de horários e evitando conflitos.</p>
+<p>Bem-vindo ao repositório do <b>Sistema de investimento</b>. Este projeto foi desenvolvido em Java utilizando o banco phpMyAdmin e tem como tornar graficamente visível possíveis investimentos que o indivíduo deseja realizar.</p>
 
 ---
 
 # Funcionalidades Principais
 
-1. **Cadastro de Usuários**  
+1. **Receber**  
    - Possibilidade de criar contas com diferentes níveis de acesso.
 
 2. **Login Seguro**  
